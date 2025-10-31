@@ -1,0 +1,14 @@
+{
+    "name": "misael/cascara_mvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "files": [
+        "app/Helpers/function_helpers.php"
+    ],
+    "require": {
+        "easy-projects/simple-router": "^7.6"
+    }
+}
