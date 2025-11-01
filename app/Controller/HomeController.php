@@ -10,7 +10,9 @@ class HomeController
 {
     public function index()
     {
-        view('home');
+        $contacts = new HomeModel();
+        $data['contacts'] = $contacts->getAllContacts();
+        view('home', $data);
     }
 
     public function create()

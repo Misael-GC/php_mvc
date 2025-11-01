@@ -12,7 +12,24 @@
         <div class="row justify-content-center">
             <div class="d-grid gap-2">
                 <a href="<?= base_url(); ?>contact/create" class="btn btn-primary">Add contact</a>
-                <!-- <a href="<?php echo base_url(); ?>Categories/index" class="btn btn-secondary btn-lg">Ir a Categorías</a> -->
+            </div>
+
+            <div class="row mt-3">
+                <?php foreach ($data['contacts'] as $contact): ?>
+                    <div class="col-md-4 pt-3">
+                        <div class="card">
+                            <img src="<?= base_url()?>/assets/img/<?=$contact['coct_url_img_profile'] ?>" alt="" class="card-img-top">
+                            <div class="card-body">
+                            <h5 class="card-title">Name: <?= $contact['coct_name'] ?> <?= $contact['coct_last_name'] ?></h5>
+                                <p class="card-text">Age: <?= $contact['coct_age'] ?></p>
+                                <p class="card-text">Email: <?= $contact['coct_email'] ?></p>
+                                <p class="card-text">Description: <?= $contact['coct_description'] ?></p>
+                                <button class="btn btn-primary">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

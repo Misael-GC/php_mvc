@@ -22,9 +22,9 @@ class HomeModel {
         return $stmt->execute();
     }
 
-    // public function getData() {
-    //     $stmt = $this->db->prepare("SELECT * FROM some_table");
-    //     $stmt->execute();
-    //     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    // }
+    public function getAllContacts() {
+        $stmt = $this->db->prepare("SELECT * FROM contact");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
