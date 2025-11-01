@@ -51,4 +51,19 @@ class HomeController
             $response->status(400)->send(['data' => 'Error al eliminar el contacto']);
         }
     }
+
+    public function edit(Request $request, Response $response){
+        $data['id_contact'] = $request->params->id; 
+        // var_dump('desde edit: ',$request);
+        // var_dump('desde edit: ',$request->params->id);
+        // Lógica para mostrar el formulario de edición un pre-llenado
+        $homoeModel = new HomeModel();
+        $data['contact'] = $homoeModel->getContactById((int)$request->params->id);
+        // var_dump($data); //nos regresa todos los datos del contacto
+        view('edit', $data);
+
+        // Aquí puedes cargar los datos del contacto y pasarlos a la vista de edición
+        // Por simplicidad, solo mostramos un mensaje
+        // $response->status(200)->send(['data' => "Mostrar formulario de edición para el contacto con ID: $id_contact"]);
+    }
 }

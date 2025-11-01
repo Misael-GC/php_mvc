@@ -27,7 +27,7 @@
                                 <p class="card-text">Age: <?= $contact['coct_age'] ?></p>
                                 <p class="card-text">Email: <?= $contact['coct_email'] ?></p>
                                 <p class="card-text">Description: <?= $contact['coct_description'] ?></p>
-                                <button class="btn btn-primary">Edit</button>
+                                <a href="<?= base_url(); ?>contact/edit/<?= $contact['coct_id_contact'] ?>" class="btn btn-primary">Edit</a>
                                 <button class="btn btn-danger delete" data-id="<?= $contact['coct_id_contact'] ?>">Delete</button>
                             </div>
                         </div>

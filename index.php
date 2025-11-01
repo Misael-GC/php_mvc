@@ -34,4 +34,10 @@ $router->delete('/contact/{id}', function(Request $request, Response $response) 
     $controller->destroy( $request, $response);
 });
 
+$router->get('/contact/edit/{id}', function(Request $request, Response $response) {
+    // Aquí puedes manejar la lógica para mostrar el formulario de edición
+    $controller = new HomeController();
+    $controller->edit( $request, $response);
+});
+
 $router->start();

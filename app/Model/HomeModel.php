@@ -41,4 +41,11 @@ class HomeModel {
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         // return $stmt->fetchColumn();
     }
+
+    public function getContactById(int $id){
+        $stmt = $this->db->prepare("SELECT * FROM contact WHERE coct_id_contact = ?");
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
