@@ -27,4 +27,18 @@ class HomeModel {
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function deleteContactById(int $id): bool {
+        $stmt = $this->db->prepare("DELETE FROM contact WHERE coct_id_contact = ?");
+        $stmt->bindParam(1, $id);
+        return $stmt->execute();
+    }
+
+    public function getContactImg(int $id){
+        $stmt = $this->db->prepare("SELECT coct_url_img_profile FROM contact WHERE coct_id_contact = ?");
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        // return $stmt->fetchColumn();
+    }
 }

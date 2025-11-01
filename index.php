@@ -28,4 +28,10 @@ $router->post('/contact', function(Request $request, Response $response) {
     $controller->store( $request, $response);
 });
 
+$router->delete('/contact/{id}', function(Request $request, Response $response) {
+    // Aquí puedes manejar la lógica para eliminar el contacto
+    $controller = new HomeController();
+    $controller->destroy( $request, $response);
+});
+
 $router->start();

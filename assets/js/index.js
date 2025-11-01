@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Enviar formulario de contacto
     const send = document.querySelector('#send_contact');
 
     if(send){
@@ -16,6 +17,38 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: form
             })
 
+            if(res.ok){
+                const result = await res.json();
+                alert(result.data);
+                location.href = base_url;
+            }else{
+                const error = await res.json();
+                alert(error);
+            }
+        } catch (error) {
+            console.log(`error de red o fallo del fetch`, error);
+            alert("Hubo un error con el servidor " + error);
+        }
+    }
+
+    // Eliminar contacto
+    const deleteContact = document.querySelectorAll('.delete');
+    deleteContact.forEach(contact => {
+        
+        contact.addEventListener('click', async function handleClick(e){
+            const contactId = e.target.dataset.id;
+            // console.log('Eliminar contacto con ID:', contactId);
+            deleteContactById(contactId);
+            
+        })
+    });
+
+
+    async function deleteContactById(contactId) {
+        try {
+            const res = await fetch(base_url + 'contact/' + contactId, {
+                method: 'DELETE'
+            })
             if(res.ok){
                 const result = await res.json();
                 alert(result.data);

@@ -31,5 +31,24 @@ class HomeController
         ($HomeModel->insertContact($client, $url))
             ? $response->status(200)->send(['data' => 'Datos insertados correctamente'])
             : $response->status(400)->send(['data' => 'Error al insertar los datos']);
-    } 
+    }
+
+    public function destroy(Request $request, Response $response){
+        // Lógica para eliminar el contacto
+        $id_contact = $request->params->id;
+
+        $homeModel = new HomeModel();
+        $img = $homeModel->getContactImg((int)$id_contact)[0]['coct_url_img_profile'];
+
+        if($homeModel->deleteContactById((int)$id_contact)){
+            // Eliminar la imagen del servidor
+            $imagePath = 'assets/img/' . $img;
+            if (file_exists($imagePath)) {
+                unlink($imagePath); // Elimina el archivo
+            }
+            $response->status(200)->send(['data' => 'Contacto eliminado correctamente']);
+        } else {
+            $response->status(400)->send(['data' => 'Error al eliminar el contacto']);
+        }
+    }
 }
