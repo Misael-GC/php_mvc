@@ -6,9 +6,9 @@ use PDO;
 
 class Database {
     private $host = 'localhost';
-    private $dbname = 'nxgcommx_intranet_crs';
+    private $dbname = 'contactos';
     private $user = 'root';
-    private $password = '';
+    private $password = 'Misael_12';
     private static $instance = null;
     private $pdo;
 

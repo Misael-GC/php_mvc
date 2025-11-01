@@ -7,4 +7,9 @@ class HomeController
     {
         view('home');
     }
+
+    public function create()
+    {
+        view('create');
+    }
 }

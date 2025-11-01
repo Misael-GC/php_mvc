@@ -7,10 +7,15 @@ use EasyProjects\SimpleRouter\Router as Router;
 use App\Controller\HomeController;
 
 $router = new Router;
-// $router->get('/', [HomeController::class, 'index']);
+
 $router->get('/', function() {
     $controller = new HomeController();
     $controller->index();
+});
+
+$router->get('/contact/create', function() {
+    $controller = new HomeController();
+    $controller->create();
 });
 
 $router->start();
