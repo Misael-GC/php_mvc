@@ -48,4 +48,16 @@ class HomeModel {
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function updateContactById(int $id, array $contact): bool {
+        $stmt = $this->db->prepare("UPDATE contact SET coct_name = ?, coct_last_name = ?, coct_age = ?, coct_email = ?, coct_description = ?
+        WHERE coct_id_contact = ?");
+        $stmt->bindParam(1, $contact['name']);
+        $stmt->bindParam(2, $contact['lastName']);
+        $stmt->bindParam(3, $contact['age']);
+        $stmt->bindParam(4, $contact['email']);
+        $stmt->bindParam(5, $contact['descripcion']);
+        $stmt->bindParam(6, $id);
+        return $stmt->execute();
+    }
 }

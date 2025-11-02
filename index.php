@@ -40,4 +40,10 @@ $router->get('/contact/edit/{id}', function(Request $request, Response $response
     $controller->edit( $request, $response);
 });
 
+$router->put('/contact/{id}', function(Request $request, Response $response) {
+    // Aquí puedes manejar la lógica para actualizar el contacto
+    $controller = new HomeController();
+    $controller->update( $request, $response);
+});
+
 $router->start();

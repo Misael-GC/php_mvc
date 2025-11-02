@@ -61,9 +61,21 @@ class HomeController
         $data['contact'] = $homoeModel->getContactById((int)$request->params->id);
         // var_dump($data); //nos regresa todos los datos del contacto
         view('edit', $data);
+    }
 
-        // Aquí puedes cargar los datos del contacto y pasarlos a la vista de edición
-        // Por simplicidad, solo mostramos un mensaje
-        // $response->status(200)->send(['data' => "Mostrar formulario de edición para el contacto con ID: $id_contact"]);
+    public function update(Request $request, Response $response){
+        // var_dump($request->params->id);
+        // var_dump((array)$request->body);
+        // Lógica para actualizar el contacto
+        $id_contact = $request->params->id;
+        $updatedData = (array)$request->body;
+
+        $homeModel = new HomeModel();
+
+        if($homeModel->updateContactById((int)$id_contact, $updatedData)){
+            $response->status(200)->send(['data' => 'Contacto actualizado correctamente']);
+        } else {
+            $response->status(400)->send(['data' => 'Error al actualizar el contacto']);
+        }
     }
 }
