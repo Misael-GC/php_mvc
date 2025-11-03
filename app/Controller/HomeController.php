@@ -20,17 +20,34 @@ class HomeController
         view('create');
     }
 
+    public function validations($client):array{
+        $error = [];
+        if(empty($client['name'])) $error += ['name' => 'Insert name'];
+        if(empty($client['lastName'])) $error += ['lastName' => 'Insert phone'];
+        if(empty($client['age'])) $error += ['age' => 'Insert age'];
+        if(empty($client['email'])) $error += ['email' => 'Insert email'];
+
+        return $error;
+    }
+
     public function store(Request $request, Response $response){
         // Lógica para almacenar el contacto
         // var_dump($request);
         $client = (array)$request->body;
-        $url = saveFile((array) $request->files->file,'assets/img/',['jpg','jpeg','png','gif', 'PNG', 'JPG', 'JPEG']);
+        $errors = $this->validations($client);
 
-        $HomeModel = new HomeModel();
+        if(empty($errors)){
+            $url = saveFile((array) $request->files->file,'assets/img/',['jpg','jpeg','png','gif', 'PNG', 'JPG', 'JPEG']);
 
-        ($HomeModel->insertContact($client, $url))
-            ? $response->status(200)->send(['data' => 'Datos insertados correctamente'])
-            : $response->status(400)->send(['data' => 'Error al insertar los datos']);
+            $HomeModel = new HomeModel();
+
+            ($HomeModel->insertContact($client, $url))
+                ? $response->status(200)->send(['data' => 'Datos insertados correctamente'])
+                : $response->status(400)->send(['data' => 'Error al insertar los datos']);
+            }else{
+                $response->status(400)->send(['data' => $errors]);
+            }
+
     }
 
     public function destroy(Request $request, Response $response){
