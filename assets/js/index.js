@@ -31,8 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 location.href = base_url;
             }else{
                 // const error = await res.json();
-                // alert(error);
-                // --- AQUÍ VA LA LÓGICA DE LA IMAGEN ---
+                // alert(error)
 
             // 1. (Opcional pero recomendado) Limpiar errores anteriores
             document.querySelectorAll('.remove-this').forEach(el => el.remove());
@@ -41,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // 2. Obtener el objeto JSON del error
             const errorResponse = await res.json();
             
-            // 3. Acceder a la propiedad 'data' (como en la imagen: e.json.then(({data}))
+            // 3. Acceder a la propiedad 'data'
             const errorData = errorResponse.data;
 
             // 4. Iterar sobre las claves del objeto de error (ej. "name", "email", "age")
@@ -51,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const inputElement = document.querySelector('#' + resultadoKey);
 
                 if (inputElement) {
-                    // 6. Aplicar la lógica de la imagen para mostrar el error
+                    // 6. Aplicar la lógica para mostrar el error
                     let padre = inputElement.parentNode;
                     padre.classList.add('resaltar');
                     
